@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E45254C629C2FA980069A57F /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = E45254C529C2FA980069A57F /* Alamofire */; };
+		E45254C829C2FCAF0069A57F /* SozlukCevap.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45254C729C2FCAF0069A57F /* SozlukCevap.swift */; };
 		E4A1681129A66C6800BFF312 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A1681029A66C6800BFF312 /* AppDelegate.swift */; };
 		E4A1681329A66C6800BFF312 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A1681229A66C6800BFF312 /* SceneDelegate.swift */; };
 		E4A1681529A66C6800BFF312 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A1681429A66C6800BFF312 /* ViewController.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E45254C729C2FCAF0069A57F /* SozlukCevap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SozlukCevap.swift; sourceTree = "<group>"; };
 		E4A1680D29A66C6800BFF312 /* Sozluk Uygulamasi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sozluk Uygulamasi.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4A1681029A66C6800BFF312 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E4A1681229A66C6800BFF312 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -74,6 +76,7 @@
 				E4A1682429A66E5100BFF312 /* KelimeHucreTableViewCell.swift */,
 				E4A1682629A6706200BFF312 /* KelimeDetayViewController.swift */,
 				E4A1682829A6716C00BFF312 /* Kelimeler.swift */,
+				E45254C729C2FCAF0069A57F /* SozlukCevap.swift */,
 			);
 			path = "Sozluk Uygulamasi";
 			sourceTree = "<group>";
@@ -159,6 +162,7 @@
 				E4A1681529A66C6800BFF312 /* ViewController.swift in Sources */,
 				E4A1682729A6706200BFF312 /* KelimeDetayViewController.swift in Sources */,
 				E4A1681129A66C6800BFF312 /* AppDelegate.swift in Sources */,
+				E45254C829C2FCAF0069A57F /* SozlukCevap.swift in Sources */,
 				E4A1682529A66E5100BFF312 /* KelimeHucreTableViewCell.swift in Sources */,
 				E4A1681329A66C6800BFF312 /* SceneDelegate.swift in Sources */,
 			);

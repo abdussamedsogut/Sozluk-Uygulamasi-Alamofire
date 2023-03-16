@@ -10,37 +10,84 @@ import Alamofire
 
 
 class ViewController: UIViewController {
-
+    
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var kelimeTableView: UITableView!
-
+    
     var kelimeListesi = [Kelimeler]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let k1 = Kelimeler(kelime_id: 1, ingilizce: "Table", turkce: "Masa")
-        let k2 = Kelimeler(kelime_id: 2, ingilizce: "Door", turkce: "Kapı")
-        let k3 = Kelimeler(kelime_id: 3, ingilizce: "Window", turkce: "Pencere")
-
-        kelimeListesi.append(k1)
-        kelimeListesi.append(k2)
-        kelimeListesi.append(k3)
         
-        
-
         kelimeTableView.delegate = self
         kelimeTableView.dataSource = self
-
+        
         searchBar.delegate = self
         
-    }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        tumKelimelerAl()
         
     }
-
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let indeks = sender as? Int
+        let gidilecekVC = segue.destination as! KelimeDetayViewController
+        
+        gidilecekVC.kelime = kelimeListesi[indeks!]
+        
+    }
+    
+    
+    func tumKelimelerAl() {
+        
+        guard let url = URL(string: "http://kasimadalan.pe.hu/sozluk/tum_kelimeler.php") else { return }
+        let request = AF.request(url, method: .get)
+        
+        request.response { response in
+            guard let data = response.data else { return }
+            
+            do {
+                let cevap = try JSONDecoder().decode(SozlukCevap.self, from: data)
+                
+                if let gelenKelimeListesi = cevap.kelimeler {
+                    self.kelimeListesi = gelenKelimeListesi
+                }
+                DispatchQueue.main.async {
+                    self.kelimeTableView.reloadData()
+                }
+                
+            } catch  {
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func aramaYap(aramaKelimesi:String) {
+        
+        let params: Parameters = ["ingilizce":aramaKelimesi]
+        
+        AF.request("http://kasimadalan.pe.hu/sozluk/kelime_ara.php", method: .post, parameters: params).response { response in
+            if let data = response.data {
+                
+                do {
+                    let cevap = try JSONDecoder().decode(SozlukCevap.self, from: data)
+                    
+                    if let gelenKelimeListesi = cevap.kelimeler {
+                        self.kelimeListesi = gelenKelimeListesi
+                    }
+                    DispatchQueue.main.async {
+                        self.kelimeTableView.reloadData()
+                    }
+                    
+                } catch  {
+                    print(error.localizedDescription)
+                }
+            }
+        }
+    }
+    
+    
 }
+    
 
 extension ViewController: UITableViewDelegate,UITableViewDataSource {
     
@@ -75,6 +122,6 @@ extension ViewController: UITableViewDelegate,UITableViewDataSource {
 
 extension ViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print(searchText)
+        aramaYap(aramaKelimesi: searchText)
     }
 }
