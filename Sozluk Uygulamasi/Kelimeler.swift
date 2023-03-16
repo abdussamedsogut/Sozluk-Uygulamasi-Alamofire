@@ -7,8 +7,8 @@
 
 import Foundation
 
-class Kelimeler {
-    var kelime_id: Int?
+class Kelimeler: Codable {
+    var kelime_id: String?
     var ingilizce: String?
     var turkce: String?
     
@@ -18,7 +18,7 @@ class Kelimeler {
     }
     
     
-    init(kelime_id: Int, ingilizce: String, turkce: String) {
+    init(kelime_id: String, ingilizce: String, turkce: String) {
         self.kelime_id = kelime_id
         self.ingilizce = ingilizce
         self.turkce = turkce
